@@ -1,11 +1,11 @@
 from flask import Flask,render_template,url_for,request
-import pickle
+import joblib
 import numpy as np
 
-popular_df = pickle.load(open("model/popular.pkl",'rb'))
-books = pickle.load(open("model/books.pkl",'rb'))
-pt = pickle.load(open("model/pt.pkl",'rb'))
-similarity_scores = pickle.load(open("model/similarity_scores.pkl",'rb'))
+popular_df = joblib.load("model/popular.joblib")
+books = joblib.load("model/books.joblib")
+pt = joblib.load("model/pt.joblib")
+similarity_scores = joblib.load("model/similarity_scores.joblib")
 
 app = Flask(__name__)
 
