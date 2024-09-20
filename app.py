@@ -33,7 +33,7 @@ def recommend():
         user_input = request.form.get("user_input")
         index_books = np.where(pt.index == user_input)[0][0]
         distances = similarity_scores[index_books]
-        similar_items = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[1:9]
+        similar_items = sorted(list(enumerate(distances)), reverse=True, key=lambda x: x[1])[0:9]
 
         data = []
         for i in similar_items:

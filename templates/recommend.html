@@ -4,7 +4,7 @@
 
     <form action="/recommend_books" method="POST">
         <h3 class="text-color"> Enter the Book Name :</h3>
-        <input name="user_input" type="text" class="form-control"><br>
+        <input name="user_input" type="text" class="form-control" value="{{ request.form.user_input }}"><br>
         <input type="submit" class="btn btn-lg btn-success">
     </form>
 </div>
@@ -15,8 +15,8 @@
                 <div class="card-body">
                     <div>
                         <img class="card-img-top" style="width: 120px; height: 180px" src="{{ i[2] }}">
-                        <h4 class="text-color" style="margin-top:5px"> {{ i[0] }} </h4>
-                        <p class="text-color" style="margin-top:15px">{{ i[1] }}</p>
+                        <h3 class="text-color" style="margin-top:5px"><b> {{ i[0] }} </b></h3>
+                        <p class="text-color" style="margin-top:15px"><b>{{ i[1] }} </b></p>
                     </div>
                 </div>
         </div>
