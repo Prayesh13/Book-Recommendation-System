@@ -1,31 +1,36 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="form-group" >
+<div class="form-group">
 
     <form action="/recommend_books" method="POST">
         <h3 class="text-color"> Enter the Book Name :</h3>
-        <select name="user_input" class="form-control">
-            <option value="" selected disabled>Select a book</option>
+        <select name="user_input" class="form-control" style="height: 50px; font-size: 16px;">
+            <option value="Select a book" selected disabled>Select a book</option>
             <!-- Populate the dropdown with the list of books (blist) -->
             {% for book in blist %}
-                <option value="{{ book }}">{{ book }}</option>
+                <!-- Check if the current book is the user input and mark it as selected -->
+                <option value="{{ book }}" {% if book == uinput %}selected{% endif %}>{{ book }}</option>
             {% endfor %}
         </select>
         <br>
         <input type="submit" class="btn btn-lg btn-success">
     </form>
 </div>
-{% if data %}
 
+{% if data %}
+    <div class="md-5">
+        <h4 class="text-color"><b> Entered Book Name: </b>{{ uinput }} </h4>
+    </div>
     {% for i in data %}
         <div class="col-md-3" style="margin-top:30px">
-                <div class="card-body">
-                    <div>
-                        <img class="card-img-top" style="width: 120px; height: 180px" src="{{ i[2] }}">
-                        <h3 class="text-color" style="margin-top:5px"><b> {{ i[0] }} </b></h3>
-                        <p class="text-color" style="margin-top:15px"><b>{{ i[1] }} </b></p>
-                    </div>
+            <div class="card-body">
+                <div>
+                    <img class="card-img-top" style="width: 120px; height: 180px" src="{{ i[2] }}">
+                    <h3 class="text-color" style="margin-top:5px"><b> <b> Book Name: </b> </b>{{ i[0] }} </h3>
+                    <p class="text-color" style="margin-top:15px"><b> <b> Author Name: </b> </b>{{ i[1] }} </p>
+                    <p class="text-color" style="margin-top:15px"><b> <b> Year Of Publication: </b> </b>{{ i[3] }} </p>
                 </div>
+            </div>
         </div>
     {% endfor %}
 {% endif %}
