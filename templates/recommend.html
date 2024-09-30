@@ -3,7 +3,7 @@
 <div class="form-group">
 
     <form action="/recommend_books" method="POST">
-        <h3 class="text-color"> Enter the Book Name :</h3>
+        <h3 class="text-color" style="margin-top: 20px;"> Select a Book Name :</h3>
         <select name="user_input" class="form-control" style="height: 50px; font-size: 16px;">
             <option value="Select a book" selected disabled>Select a book</option>
             <!-- Populate the dropdown with the list of books (blist) -->
@@ -13,22 +13,23 @@
             {% endfor %}
         </select>
         <br>
-        <input type="submit" class="btn btn-lg btn-success">
+        <input type="submit" class="btn btn-lg btn-success" value="Get Recommendation">
     </form>
 </div>
 
 {% if data %}
-    <div class="md-5">
+    <div style="margin-top: 30px;">
         <h4 class="text-color"><b> Entered Book Name: </b>{{ uinput }} </h4>
+        <h2 class="text-color" style="margin-top: 30px;"><b> Similar Books: </b></h2>
     </div>
     {% for i in data %}
         <div class="col-md-3" style="margin-top:30px">
-            <div class="card-body">
+            <div class="card-body" style="height: 500px;">
                 <div>
-                    <img class="card-img-top" style="width: 120px; height: 180px" src="{{ i[2] }}">
-                    <h3 class="text-color" style="margin-top:5px"><b> <b> Book Name: </b> </b>{{ i[0] }} </h3>
-                    <p class="text-color" style="margin-top:15px"><b> <b> Author Name: </b> </b>{{ i[1] }} </p>
-                    <p class="text-color" style="margin-top:15px"><b> <b> Year Of Publication: </b> </b>{{ i[3] }} </p>
+                    <img class="card-img-top" style="width: 180px; height: 250px" src="{{ i[2] }}">
+                    <h4 class="text-color" style="margin-top:5px"><b> <b> Book Name: </b> </b>{{ i[0] }} </h4>
+                    <h5 class="text-color" style="margin-top:15px"><b> <b> Author Name: </b> </b>{{ i[1] }} </h5>
+                    <h5 class="text-color" style="margin-top:15px"><b> <b> Year Of Publication: </b> </b>{{ i[3] }} </h5>
                 </div>
             </div>
         </div>

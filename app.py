@@ -21,15 +21,19 @@ def index():
                            author_name = popular_df['Book-Author'].to_list(),
                            votes = popular_df['num_ratings'].to_list(),
                            rating = popular_df['avg_rating'].to_list(),
-                           image = popular_df['Image-URL-M'].to_list(),
+                           image = popular_df['Image-URL-L'].to_list(),
+                           year=popular_df['Year-Of-Publication'].to_list(),
                            body_title = 'Top 50 Books')
 
+@app.route("/about")
+def about():
+    return render_template('about.html',title='About Page')
 
 @app.route("/recommend")
 def recommend_ui():
     return render_template("recommend.html",
                            title="Recommendation System",
-                           body_title="Recommended Books",blist=books_list)
+                           body_title="Recommend a Books",blist=books_list)
 
 @app.route("/recommend_books", methods=['GET','POST'])
 def recommend():
@@ -55,7 +59,7 @@ def recommend():
             pt=pt)
 
         return render_template("recommend.html",title="Recommendation System",
-                           body_title="Recommended Books",
+                           body_title="Recommend a Books",
                                data=data,
                                uinput = user_input,
                                blist=books_list)
@@ -63,7 +67,7 @@ def recommend():
     except Exception as e:
         return render_template("recommend.html", error_message="Sorry, this book is not available in our dataset.",
                                title="Recommendation System",
-                               body_title="Recommended Books",
+                               body_title="Recommend a Books",
                                blist=books_list)
 
 
