@@ -21,11 +21,17 @@ def index():
                            image = popular_df['Image-URL-M'].to_list(),
                            body_title = 'Top 50 Books')
 
+@app.route("/book_list")
+def book_names():
+    book_list = {"books" : list(pt.index)}
+    return book_list
+
 @app.route("/recommend")
 def recommend_ui():
+    book_list = book_names()['books']
     return render_template("recommend.html",
                            title="Recommendation System",
-                           body_title="Recommended Books")
+                           body_title="Recommended Books",blist=book_list)
 
 @app.route("/recommend_books", methods=['GET','POST'])
 def recommend():
@@ -38,10 +44,10 @@ def recommend():
         data = []
         for i in similar_items:
             item = []
-            temp_df = books[books['Book-Title'] == pt.index[i[0]]]
-            item.append(temp_df.drop_duplicates(subset=['Book-Title'])['Book-Title'].values[0])
-            item.append(temp_df.drop_duplicates(subset=['Book-Title'])['Book-Author'].values[0])
-            item.append(temp_df.drop_duplicates(subset=['Book-Title'])['Image-URL-M'].values[0])
+            temp_df = books[books['Book-Title'] == pt.index[i[0]]].drop_duplicates(subset=['Book-Title'])
+            item.append(temp_df['Book-Title'].values[0])
+            item.append(temp_df['Book-Author'].values[0])
+            item.append(temp_df['Image-URL-M'].values[0])
 
             data.append(item)
 
