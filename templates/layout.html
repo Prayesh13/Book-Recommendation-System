@@ -8,50 +8,45 @@
 
 </head>
 <style>
-    .text-color {
-        color:	#3d52a0;
-    }
-
-    .fixed-img-size {
-        width: 120px;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    body {
-        padding-top: 60px;
-    }
-
-    .card-body {
-        background-color: white;
+    /* Simple grid structure for card layout */
+    .simple-grid {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 450px;
-        margin: 2px;
-        padding: 15px;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    /* Styling for custom cards */
+    .custom-card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
         border: 2px solid transparent;
-        transition: border-color 0.3s ease, background-color 0.3s ease;
+        overflow: hidden;
+        height: 100%;
     }
 
-    .card-body:hover {
-        border-color: #c73ded;
-        background-color: #8697c4;
+    /* Hover Effect: scale the card and apply gradient background */
+    .custom-card:hover {
+        transform: scale(1.05);
+        border-color: #6b70d6;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(120deg, #8697c4, #ede8f5);
         color: white;
     }
 
-    .card-body:hover .text-color {
+    /* Hover effect to change text color inside the card */
+    .custom-card:hover .text-color {
         color: white;
     }
 
-    /* Increase font size for the navigation links */
-    .nav-link {
-        font-size: 20px; /* Adjust the size as desired */
-    }
-
-    .navbar-brand {
-        font-size: 24px;
+    /* Responsive breakpoints */
+    @media only screen and (max-width: 768px) {
+        .custom-card {
+            height: auto;
+        }
     }
 </style>
 
@@ -77,12 +72,12 @@
     </nav>
 
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin-top: 55px;">
             <div class="col-12 mt-5">
-                <h3 class="text-color" style="font-size:50px"> {{ body_title }} </h3>
+                <h3 class="text-color" style="font-size:50px;">{{ body_title }}</h3>
             </div>
-            {% block content %}
 
+            {% block content %}
             {% endblock %}
         </div>
     </div>

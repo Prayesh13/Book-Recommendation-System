@@ -1,18 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-{% for i in range(book_name|length) %}
-    <div class="col-md-3" style="margin-top:30px">
-        <div class="card-body" style="height: 500px;">
-            <div>
-                <img class="card-img-top" style="width: 180px; height: 220px" src="{{ image[i] }}" alt="Book Image">
-                <h4 class="text-color" style="margin-top:5px"> {{ book_name[i] }}</h4>
+<div class="row simple-grid">
+    {% for i in range(book_name|length) %}
+    <div class="col-lg-3 col-md-2 col-sm-8 mb-4"> <!-- Changed for 4 columns -->
+        <div class="card custom-card">
+            <div class="card-body">
+                <img class="card-img-top" style="width: 180px; height: 220px;" src="{{ image[i] }}" alt="Book Image">
+                <h4 class="text-color" style="margin-top:5px">{{ book_name[i] }}</h4>
                 <p class="text-color" style="margin-top:15px"><b>{{ author_name[i] }}</b></p>
-                <p class="text-color"> <b> Votes - </b>{{ votes[i] }}</p>
-                <p class="text-color"><b> Rating - </b>{{ rating[i] }}</p>
-                <p class="text-color"><b> Year Of Publication - </b>{{ year[i] }}</p>
+                <p class="text-color"><b>Votes - </b>{{ votes[i] }}</p>
+                <p class="text-color"><b>Rating - </b>{{ rating[i] }}</p>
+                <p class="text-color"><b>Year Of Publication - </b>{{ year[i] }}</p>
             </div>
         </div>
     </div>
-{% endfor %}
+    {% endfor %}
+</div>
 
 {% endblock content %}

@@ -5,11 +5,11 @@
     <form action="/recommend_books" method="POST">
         <h3 class="text-color" style="margin-top: 20px;"> Select a Book Name :</h3>
         <select name="user_input" class="form-control" style="height: 50px; font-size: 16px;">
-            <option value="Select a book" selected disabled>Select a book</option>
+            <option value="Select a book" style="margin-bottom: 20px;" selected disabled>Select a book</option>
             <!-- Populate the dropdown with the list of books (blist) -->
             {% for book in blist %}
                 <!-- Check if the current book is the user input and mark it as selected -->
-                <option value="{{ book }}" {% if book == uinput %}selected{% endif %}>{{ book }}</option>
+                <option value="{{ book }}" {% if book == uinput %} selected {% endif %}>{{ book }}</option>
             {% endfor %}
         </select>
         <br>
@@ -22,19 +22,24 @@
         <h4 class="text-color"><b> Entered Book Name: </b>{{ uinput }} </h4>
         <h2 class="text-color" style="margin-top: 30px;"><b> Similar Books: </b></h2>
     </div>
-    {% for i in data %}
-        <div class="col-md-3" style="margin-top:30px">
-            <div class="card-body" style="height: 500px;">
-                <div>
-                    <img class="card-img-top" style="width: 180px; height: 250px" src="{{ i[2] }}">
-                    <h4 class="text-color" style="margin-top:5px"><b> <b> Book Name: </b> </b>{{ i[0] }} </h4>
-                    <h5 class="text-color" style="margin-top:15px"><b> <b> Author Name: </b> </b>{{ i[1] }} </h5>
-                    <h5 class="text-color" style="margin-top:15px"><b> <b> Year Of Publication: </b> </b>{{ i[3] }} </h5>
+
+    <div class="row simple-grid">
+        {% for i in data[:8] %}  <!-- Limit the number of items displayed to 8 -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">  <!-- Adjust columns for responsiveness -->
+            <div class="card custom-card">
+                <div class="card-body">
+                    <img class="card-img-top" style="width: 180px; height: 250px;" src="{{ i[2] }}" alt="Book Image">
+                    <h4 class="text-color" style="margin-top: 15px;"><b> Book Name: </b>{{ i[0] }}</h4>
+                    <h5 class="text-color" style="margin-top: 10px;"><b> Author: </b>{{ i[1] }}</h5>
+                    <h5 class="text-color" style="margin-top: 10px;"><b> Year: </b>{{ i[3] }}</h5>
                 </div>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+</div>
 {% endif %}
+
+
 
 {% if error_message %}
     <div class="alert alert-danger mt-3">
